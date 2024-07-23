@@ -1,0 +1,32 @@
+=== System Usage Report ===
+Timestamp: 2024-07-22 16:44:11
+CPU Usage: 4.9%
+Memory Usage: 34.9522%
+Disk Usage: 30% on /
+Network Statistics: Total: 1247
+TCP:   48 (estab 24, closed 10, orphaned 0, timewait 8)
+
+Transport Total     IP        IPv6
+RAW	  1         0         1        
+UDP	  13        10        3        
+TCP	  38        30        8        
+INET	  52        40        12       
+FRAG	  0         0         0        
+Top Processes: 
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+  90958 einfoch+  20   0   13208   4096   3328 R  11.8   0.0   0:00.04 top
+    868 redis     20   0   69812  11264   8960 S   5.9   0.1   0:20.00 redis-server
+      1 root      20   0  167116  11588   7876 S   0.0   0.1   0:21.12 systemd
+      2 root      20   0       0      0      0 S   0.0   0.0   0:00.03 kthreadd
+      3 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_gp
+
+=== Recent Log Entries ===
+Jul 22 16:43:56 AHMLPT1719 kubelet.daemon[90802]: E0722 16:43:56.528036   90802 run.go:74] "command failed" err="failed to run Kubelet: validate service connection: validate CRI v1 runtime API for endpoint \"unix:///run/containerd/containerd.sock\": rpc error: code = Unimplemented desc = unknown service runtime.v1.RuntimeService"
+Jul 22 16:44:00 AHMLPT1719 kubelet.daemon[90839]: E0722 16:44:00.748117   90839 run.go:74] "command failed" err="failed to run Kubelet: validate service connection: validate CRI v1 runtime API for endpoint \"unix:///run/containerd/containerd.sock\": rpc error: code = Unimplemented desc = unknown service runtime.v1.RuntimeService"
+Jul 22 16:44:04 AHMLPT1719 kubelet.daemon[90873]: E0722 16:44:04.981679   90873 run.go:74] "command failed" err="failed to run Kubelet: validate service connection: validate CRI v1 runtime API for endpoint \"unix:///run/containerd/containerd.sock\": rpc error: code = Unimplemented desc = unknown service runtime.v1.RuntimeService"
+Jul 22 16:44:09 AHMLPT1719 kubelet.daemon[90908]: E0722 16:44:09.248679   90908 run.go:74] "command failed" err="failed to run Kubelet: validate service connection: validate CRI v1 runtime API for endpoint \"unix:///run/containerd/containerd.sock\": rpc error: code = Unimplemented desc = unknown service runtime.v1.RuntimeService"
+
+=== Health Checks ===
+Apache Status: active
+MySQL Status: inactive
+External Service (example.com) Status: HTTP 200
