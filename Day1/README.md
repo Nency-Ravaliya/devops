@@ -11,7 +11,7 @@ Create a file server\_config.txt using Nano:
 
 nano server\_config.txt
 
-![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.001.png)
+/home/einfochips/Downloads/day1Work/Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.001.png
 
 Add the following content:
 
