@@ -1,4 +1,4 @@
-# Application Deployment with Kubernetes with SSL certificate configuration
+# Application Deployment with Kubernetes and Minikube
 
 This guide provides a step-by-step walkthrough for deploying a web application using Docker and Minikube. It includes setting up SSL certificates, configuring ingress, and performing load testing.
 
