@@ -11,7 +11,7 @@ Create a file server\_config.txt using Nano:
 
 nano server\_config.txt
 
-/home/einfochips/Downloads/day1Work/Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.001.png
+![Aspose Words 2e32810f-c131-4c7a-a162-965b3bbb2e64 001](https://github.com/user-attachments/assets/49ae7464-1496-4a68-afaf-7439c6b39352)
 
 Add the following content:
 
@@ -28,7 +28,7 @@ Edit the same file with Vi:
 
 vi server\_config.txt
 
-![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.002.png)
+![Aspose Words 2e32810f-c131-4c7a-a162-965b3bbb2e64 002](https://github.com/user-attachments/assets/52bb15cf-2e52-4427-b974-30ce337925e1)
 
 Append the following text:
 
@@ -41,7 +41,7 @@ Further edit the file with Vim:
 
 vim server\_config.txt
 
-![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.003.png)
+![Uploading Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.003.png…]()
 
 Add the following text:
 
