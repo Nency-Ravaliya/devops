@@ -53,4 +53,42 @@ sudo usermod -aG docker jenkins
 sudo systemctl restart jenkins
 ```
 
+Jenkins Pipeline Configuration
+
+### 1. Create a Jenkins Pipeline Job
+Open Jenkins and click New Item.
+Enter a name for the pipeline job and select Pipeline.
+Click OK to create the job.
+
+### 2. Configure Pipeline Script
+
+In the job configuration:
+
+Scroll to the Pipeline section.
+Select Pipeline script and enter the following script:
+
+
+## Configure DockerHub Credentials
+
+Go to Manage Jenkins > Manage Credentials > (global).
+Click Add Credentials and select Username with password.
+Enter your DockerHub username and password.
+Use the ID you provide as DOCKER_CREDENTIALS_ID in the Jenkinsfile.
+DockerHub Repository Setup
+### 1. Create a DockerHub Account
+If you don’t already have a DockerHub account, create one at DockerHub.
+
+### 2. Create a DockerHub Repository
+Log in to DockerHub and create a new repository to store your Docker images.
+
+Verifying the Deployment
+### 1. Trigger the Pipeline Job
+In Jenkins, navigate to your pipeline job and click Build Now.
+
+### 2. Monitor the Build Process
+Check the console output for each stage of the pipeline to ensure all steps execute successfully.
+
+### 3. Verify Container Deployment
+Access the application at **http://localhost:8080** or use docker ps to list running containers to ensure the container is running correctly.
+
 
