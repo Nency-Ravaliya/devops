@@ -11,7 +11,7 @@ Create a file server\_config.txt using Nano:
 
 nano server\_config.txt
 
-/home/einfochips/Downloads/day1Work/Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.001.png
+/home/einfochips/Downloads/day1Work/Aimg.001.png
 
 Add the following content:
 
@@ -28,7 +28,7 @@ Edit the same file with Vi:
 
 vi server\_config.txt
 
-![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.002.png)
+![](Aimg.002.png)
 
 Append the following text:
 
@@ -41,7 +41,7 @@ Further edit the file with Vim:
 
 vim server\_config.txt
 
-![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.003.png)
+![](Aimg.003.png)
 
 Add the following text:
 
@@ -71,19 +71,19 @@ sudo deluser developer
 
 sudo groupadd devteam
 
-![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.005.png)
+![](Aimg.005.png)
 
 **Add the user developer to the devteam group:**
 
 sudo usermod -aG devteam developer
 
-![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.006.png)
+![](Aimg.006.png)
 
 **Remove the user developer from the devteam group:**
 
 sudo gpasswd -d developer devteam
 
-![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.007.png)
+![](Aimg.007.png)
 
 #### <a name="_6371f4k4jzmj"></a>**Part 3: File Permissions Management (20 minutes)**
 **Scenario:** Ensure that only the appropriate users have access to specific files and directories.
@@ -94,7 +94,7 @@ View permissions for server\_config.txt:
 
 ls -l server\_config.txt
 
-![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.008.png)
+![](Aimg.008.png)
 
 1. Discuss the output (e.g., -rw-r--r--).
 1. **Changing Permissions and Ownership**
@@ -128,19 +128,19 @@ Start the Apache service:
 
 sudo systemctl start apache2
 
-![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.011.png)
+![](Aimg.011.png)
 
 Stop the Apache service:
 
 sudo systemctl stop apache2
 
-![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.012.png)
+![](Aimg.012.png)
 
 Enable the Apache service to start on boot:
 
 sudo systemctl enable apache2
 
-![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.013.png)
+![](Aimg.013.png)
 
 Disable the Apache service:
 
@@ -165,13 +165,13 @@ List all running processes:
 
 ps aux
 
-![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.015.png)
+![](Aimg.015.png)
 
 Use top to view processes in real-time:
 
 top
 
-![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.016.png)
+![](Aimg.016.png)
 
 1. **Managing Processes**
 
@@ -179,20 +179,20 @@ Identify a process to kill using ps or top, then kill it:
 
 kill <PID>
 
-![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.017.png)
+![](Aimg.017.png)
 
 Change the priority of a process (e.g., running sleep with a lower priority):
 
 nice -n 10 sleep 100 &
 
-![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.018.png)
+![](Aimg.018.png)
 
 
 Change the priority of the process using renice:
 
 renice +10 <PID>
 
-![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.019.png)
+![](Aimg.019.png)
 
 ### <a name="_5g7gldyox9g4"></a>**Creating and Deploying a Static Website with Apache2**
 #### <a name="_vvakelssuj5f"></a>**Preparation (5 minutes)**
@@ -221,12 +221,12 @@ Enable Apache2 to start on boot:
 
 sudo systemctl enable apache2
 
-![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.020.png)
+![](Aimg.020.png)
 
 1. **Verify Installation**
    1. Open a web browser and navigate to http://your\_server\_ip. You should see the Apache2 default page.
 
-      ![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.021.png)
+      ![](Aimg.021.png)
 #### <a name="_agiuof3yu2db"></a>**Part 2: Creating the Website (10 minutes)**
 1. **Navigate to the Web Directory**
 
@@ -240,7 +240,7 @@ Create a directory named mystaticwebsite:
 
 sudo mkdir mystaticwebsite
 
-![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.022.png)
+![](Aimg.022.png)
 
 Change ownership of the directory:
 
@@ -278,7 +278,7 @@ Add the following content:
 
 </html>
 
-![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.023.png)
+![](Aimg.023.png)
 
 1. Save and exit (Ctrl+O, Enter, Ctrl+X).
 1. **Create CSS File**
@@ -309,7 +309,7 @@ h1 {
 
 }
 
-![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.024.png)
+![](Aimg.024.png)
 
 1. Save and exit (Ctrl+O, Enter, Ctrl+X).
 1. **Create JavaScript File**
@@ -328,7 +328,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
-![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.025.png)
+![](Aimg.025.png)
 
 1. Save and exit (Ctrl+O, Enter, Ctrl+X).
 1. **Add an Image**
@@ -337,7 +337,7 @@ Download or copy an image file (e.g., logo.png) to the website directory:
 
 cp /path/to/your/logo.png /var/www/html/mystaticwebsite/logo.png
 
-![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.026.png)
+![](Aimg.026.png)
 
 Update index.html to include the image:
 
@@ -353,7 +353,7 @@ Update index.html to include the image:
 
 </body>
 
-![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.027.png)
+![](Aimg.027.png)
 
 #### <a name="_zbq1soq37pps"></a>**Part 3: Configuring Apache2 to Serve the Website (10 minutes)**
 1. **Create a Virtual Host File**
@@ -389,7 +389,7 @@ Disable the default site configuration:
 
 sudo a2dissite 000-default.conf
 
-![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.028.png)
+![](Aimg.028.png)
 
 1. **Reload Apache2**
 
@@ -397,15 +397,15 @@ Reload the Apache2 service to apply the changes:
 
 sudo systemctl reload apache2
 
-![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.029.png)
+![](Aimg.029.png)
 
 1. **Test the Configuration**
    1. Open a web browser and navigate to http://your\_server\_ip. You should see the static website with the HTML, CSS, JS, and image.
 
-      ![](Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.030.png)
+      ![](Aimg.030.png)
 
 
-[ref1]: Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.004.png
-[ref2]: Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.009.png
-[ref3]: Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.010.png
-[ref4]: Aspose.Words.2e32810f-c131-4c7a-a162-965b3bbb2e64.014.png
+[ref1]: Aimg.004.png
+[ref2]: Aimg.009.png
+[ref3]: Aimg.010.png
+[ref4]: Aimg.014.png
