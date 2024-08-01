@@ -1,0 +1,98 @@
+---
+- name: Install and configure PostgreSQL
+  hosts: database
+  become: yes
+  vars:
+    db_name: mydatabase
+    db_user: myuser
+    db_password: mypassword
+    backup_dir: /var/backups/postgresql
+    backup_script_path: /usr/local/bin/backup.sh
+    backup_time: "0 2 * * *"
+
+  tasks:
+    - name: Update the apt package index
+      apt:
+        update_cache: yes
+
+    - name: Add PostgreSQL APT repository
+      shell: echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" | tee /etc/apt/sources.list.d/pgdg.list
+
+    - name: Download PostgreSQL APT repository key
+      command: curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc -o /tmp/ACCC4CF8.asc
+      args:
+        creates: /tmp/ACCC4CF8.asc
+
+    - name: Add PostgreSQL APT repository key
+      apt_key:
+        file: /tmp/ACCC4CF8.asc
+        state: present
+
+    - name: Update the apt package index again
+      apt:
+        update_cache: yes
+
+    - name: Install required packages
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - acl
+        - python3-pip
+        - python3-psycopg2
+
+    - name: Install PostgreSQL server
+      apt:
+        name: postgresql-13
+        state: present
+
+    - name: Ensure PostgreSQL service is started and enabled
+      service:
+        name: postgresql
+        state: started
+        enabled: yes
+
+    - name: Create PostgreSQL database
+      become_user: postgres
+      postgresql_db:
+        name: "{{ db_name }}"
+        state: present
+
+    - name: Create PostgreSQL user
+      become_user: postgres
+      postgresql_user:
+        name: "{{ db_user }}"
+        password: "{{ db_password }}"
+        db: "{{ db_name }}"
+        priv: "ALL"
+        state: present
+
+- name: Set up web server and deploy application
+  hosts: application
+  become: yes
+  vars:
+    web_root: /var/www/html
+    app_config_template: templates/app_config.php.j2
+    db_host1: "{{ hostvars['app_server']['ansible_host'] }}"
+    db_name1: app_db
+    db_user1: app_user
+    db_password1: app_password
+
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Deploy web application
+      copy:
+        src: files/index.html
+        dest: "{{ web_root }}/index.html"
+        mode: 0644
+
+    - name: Deploy application configuration
+      template:
+        src: "{{ app_config_template }}"
+        dest: "{{ web_root }}/app_config.php"
+        mode: 0644
+
