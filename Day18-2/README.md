@@ -48,6 +48,12 @@ This repository contains the playbooks and configurations necessary for setting 
      ansible-playbook -i hosts setup_web_server.yml
      ```
 
+## Output:
+- ![image](https://github.com/user-attachments/assets/ac7d85d9-f4ab-41fd-a563-9156a6e007ed)
+- ![image](https://github.com/user-attachments/assets/39f1e633-47a0-4728-8f09-78fdbafb8404)
+
+
+
 ## Troubleshooting
 
 - **Nginx Not Serving Content**: Ensure that Nginx is running and check the configuration with `nginx -t`. Verify that the files are in the correct location and have appropriate permissions.
