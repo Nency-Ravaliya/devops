@@ -1,0 +1,20 @@
+# Base image
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy package.json and package-lock.json
+COPY catalog/package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy application files
+COPY catalog/ .
+
+# Expose port for the application
+EXPOSE 3000
+
+# Start the application
+CMD ["npm", "start"]

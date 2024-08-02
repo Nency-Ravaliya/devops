@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  CATALOG_SERVICE_URL: "http://{{ hostvars['localhost'].app_url }}/catalog"
+  ORDER_SERVICE_URL: "http://{{ hostvars['localhost'].app_url }}/order"

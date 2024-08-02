@@ -1,0 +1,7 @@
+all:
+  vars:
+    app_url: "http://localhost"
+  hosts:
+    localhost:
+      ansible_connection: local
+

@@ -1,0 +1,18 @@
+# Base image
+FROM python:3.11-slim
+
+# Set working directory
+WORKDIR /app
+
+# Install dependencies
+COPY order/requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application files
+COPY order/ .
+
+# Expose port for the application
+EXPOSE 5000
+
+# Start the Flask application
+CMD ["flask", "run", "--host=0.0.0.0"]

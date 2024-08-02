@@ -1,0 +1,39 @@
+- name: Deploy Microservices
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Apply ConfigMap
+      kubernetes.core.k8s:
+        kubeconfig: ~/.kube/config
+        state: present
+        src: kubernetes/configmap.yml
+
+    - name: Apply Secrets
+      kubernetes.core.k8s:
+        kubeconfig: ~/.kube/config
+        state: present
+        src: kubernetes/secret.yml
+
+    - name: Deploy catalog service
+      kubernetes.core.k8s:
+        kubeconfig: ~/.kube/config
+        state: present
+        src: kubernetes/deployment.catalog.yml
+
+    - name: Deploy frontend service
+      kubernetes.core.k8s:
+        kubeconfig: ~/.kube/config
+        state: present
+        src: kubernetes/deployment.frontend.yml
+
+    - name: Deploy order service
+      kubernetes.core.k8s:
+        kubeconfig: ~/.kube/config
+        state: present
+        src: kubernetes/deployment.order.yml
+
+    - name: Deploy MySQL
+      kubernetes.core.k8s:
+        kubeconfig: ~/.kube/config
+        state: present
+        src: kubernetes/mysql-deployment.yml
