@@ -88,4 +88,11 @@ This guide provides a comprehensive overview of automating the deployment and co
 
 - **Kubernetes Manifests**: Ensure all required YAML files are created.
 - **Successful Deployment**: Verify that all microservices are successfully deployed and accessible in the Kubernetes cluster.
+  
+## Output:
+- ![image](https://github.com/user-attachments/assets/a2b61197-de21-4a51-aa62-32ed6f509c89)
+- ![image](https://github.com/user-attachments/assets/e5002e40-8755-43c0-87e0-59998f14766a)
+- ![image](https://github.com/user-attachments/assets/3e198ef4-916a-44c6-af0f-c1832a43a1fa)
+- ![image](https://github.com/user-attachments/assets/9a1b4c96-d972-4254-ab90-a59931259752)
+- ![Uploading image.png…]()
 
