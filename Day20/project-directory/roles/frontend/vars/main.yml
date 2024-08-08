@@ -1,0 +1,4 @@
+---
+# vars file for frontend
+backend_host: 13.89.61.0
+backend_port: 3000
