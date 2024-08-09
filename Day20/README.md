@@ -1,65 +1,66 @@
-# Three-Tier Web Application Deployment with Ansible
+# Project 01: Ansible Automation
 
 ## Overview
 
-This repository provides Ansible roles and playbooks to deploy a three-tier web application consisting of a frontend (Nginx web server), a backend (Node.js application), and a database (MySQL server). The deployment is automated using Ansible, ensuring that all components are correctly configured and can communicate with each other.
+This repository provides Ansible configurations for various automation tasks. The project includes dynamic inventory management, performance tuning, debugging and troubleshooting playbooks, and the exploration of advanced modules. 
 
 ## Project Directory Structure
 
-The directory structure of the project is organized as follows:
 
+## Inventory Plugins
 
-## Role Definitions and Dependencies
+### Activity
+Configure a dynamic inventory plugin to manage a growing number of web servers dynamically. Integrate the plugin with Ansible to automatically detect and configure servers in various environments.
 
-### Frontend Role
+### Deliverable
+Dynamic inventory configuration file or script that automatically updates the inventory based on real-time server data.
 
-- **Tasks**: Install and configure Nginx.
-- **Templates**: `nginx.conf.j2`
-- **Dependencies**: None
+- **File**: `aws_ec2.yml`
+- **Description**: This configuration file is used to dynamically manage inventory for AWS EC2 instances. It enables automatic updates based on the current state of your AWS environment.
 
-**[See `frontend/meta/main.yml` in the repository for role dependencies.]**
+**[See `aws_ec2.yml` in the repository for configuration details.]**
 
-### Backend Role
+## Performance Tuning
 
-- **Tasks**: Install Node.js, configure the application, and start the service.
-- **Templates**: `app.js.j2`, `package.json.j2`
-- **Dependencies**: None
+### Activity
+Tune Ansible performance by adjusting settings such as parallel execution (forks), optimizing playbook tasks, and reducing playbook run time.
 
-**[See `backend/meta/main.yml` in the repository for role dependencies.]**
+### Deliverable
+Optimized `ansible.cfg` configuration file, performance benchmarks, and documentation detailing the changes made for performance improvement.
 
-### Database Role
+- **File**: `ansible.cfg`
+- **Description**: Contains optimized settings for parallel execution and other performance enhancements.
 
-- **Tasks**: Install MySQL server and configure the database.
-- **Dependencies**: None
+**[See `ansible.cfg` in the repository for performance tuning settings.]**
 
-**[See `database/meta/main.yml` in the repository for role dependencies.]**
+## Debugging and Troubleshooting Playbooks
 
-## Inventory File
+### Activity
+Implement debugging strategies to identify and resolve issues in playbooks, including setting up verbose output and advanced error handling.
 
-The inventory file is used to define groups and hosts for frontend, backend, and database tiers.
+### Deliverable
+Debugged playbooks with enhanced error handling and logging, including a troubleshooting guide with common issues and solutions.
 
-- **Static Inventory**: `inventory/hosts.ini`
-- **Dynamic Inventory**: `inventory/ec2_inventory.py`
+- **File**: `set_nginx.yml`
+- **Description**: A playbook demonstrating debugging strategies, including verbose output and improved error handling.
 
-**[Update the inventory files with appropriate host information and configurations.]**
+**[See `set_nginx.yml` in the repository for debugging techniques.]**
 
-## Playbooks
+## Exploring Advanced Modules
 
-### Deploy Playbook
+### Activity
+Use advanced Ansible modules such as `docker_container` to manage containerized applications and `aws_ec2` for AWS infrastructure management, demonstrating their integration and usage.
 
-**File**: `playbooks/deploy.yml`
+### Deliverable
+Playbooks showcasing the deployment and management of Docker containers and AWS EC2 instances, along with documentation on the benefits and configurations of these advanced modules.
 
-This playbook orchestrates the deployment of the three-tier application by calling the roles for frontend, backend, and database.
+- **File**: `install_docker.yml`
+- **Description**: Demonstrates the use of the `docker_container` module for managing Docker containers.
 
-**[See `deploy.yml` in the repository for detailed playbook configuration.]**
+- **File**: `aws_ec2.yml`
+- **Description**: Shows the use of the `aws_ec2` module for managing AWS infrastructure.
 
-### Test Playbook
-
-**File**: `playbooks/test.yml`
-
-This playbook verifies the deployment and functionality of each tier.
-
-**[See `test.yml` in the repository for detailed playbook configuration.]**
+**[See `install_docker.yml` and `aws_ec2.yml` in the repository for advanced module usage.]**
 
 ## Instructions for Use
 
@@ -70,35 +71,37 @@ This playbook verifies the deployment and functionality of each tier.
     ```
 
 2. **Update Inventory**:
-    - Configure `inventory/hosts.ini` or `inventory/ec2_inventory.py` with your hosts and parameters.
+    - Configure `aws_ec2.yml` with your AWS settings to enable dynamic inventory management.
 
 3. **Configure `ansible.cfg`**:
-    - Ensure the inventory path is set correctly in `ansible.cfg`.
+    - Adjust settings in `ansible.cfg` for performance optimization according to your environment.
 
-4. **Run Deployment**:
-    ```bash
-    ansible-playbook -i inventory/hosts.ini playbooks/deploy.yml
-    ```
+4. **Run Playbooks**:
+    - To deploy and manage Docker containers:
+      ```bash
+      ansible-playbook install_docker.yml
+      ```
 
-5. **Run Testing**:
-    ```bash
-    ansible-playbook -i inventory/hosts.ini playbooks/test.yml
-    ```
+    - To configure Nginx with debugging enabled:
+      ```bash
+      ansible-playbook set_nginx.yml -vvv
+      ```
+
+5. **Review Documentation**:
+    - Refer to the `README.md` and respective YAML files for detailed configuration and usage instructions.
+
+## Additional Notes
+
+- **Dynamic Inventory**: Ensure the `aws_ec2.yml` file is correctly set up to reflect your AWS environment for real-time inventory updates.
+- **Performance Tuning**: Review the `ansible.cfg` settings to optimize Ansible performance.
+- **Debugging**: Use the verbose output and error handling in `set_nginx.yml` to troubleshoot issues.
+- **Advanced Modules**: Explore and customize the provided playbooks to effectively manage Docker containers and AWS resources.
+
+For further details, refer to the corresponding YAML files and configurations in the repository.
 
 ## Output:
-- ![image](https://github.com/user-attachments/assets/114c7626-9bfd-44a9-a8f2-910ab9cbe16e)
-- ![image](https://github.com/user-attachments/assets/c3344d6c-e8d1-4d3b-9e9d-e453461c9325)
-- ![image](https://github.com/user-attachments/assets/6f2f72d2-ca82-4a85-9b70-d12b4d073ae3)
-- ![image](https://github.com/user-attachments/assets/40887b1d-cba6-4a03-899b-99668b6b7e76)
-- ![image](https://github.com/user-attachments/assets/6f59ce51-df8d-4a7b-bfca-c46d20bb9a79)
-- ![image](https://github.com/user-attachments/assets/54c468e1-86d3-4d4f-bfc5-8f95de69a90f)
+- ![image](https://github.com/user-attachments/assets/375f6b58-5f8b-4a98-8bfa-4477a07849be)
+- ![image](https://github.com/user-attachments/assets/8eca8f88-16c5-4f10-9533-934f7739cccc)
+- ![image](https://github.com/user-attachments/assets/1a511cb2-d5a6-4223-bfd7-25f007d530e5)
 
-
-
-
-
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 

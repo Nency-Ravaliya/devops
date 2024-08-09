@@ -1,98 +1,96 @@
-# E-Commerce Application Deployment Guide
+# Three-Tier Web Application Deployment with Ansible
 
-This guide provides a comprehensive overview of automating the deployment and configuration of an e-commerce application consisting of front-end, product catalog, and order processing microservices across development, testing, and production environments using Ansible, Docker, Kubernetes, and Jenkins.
+## Overview
 
-## Table of Contents
-1. [Git Repository Setup](#git-repository-setup)
-2. [Dockerize Microservices](#dockerize-microservices)
-3. [Kubernetes Deployment](#kubernetes-deployment)
+This repository provides Ansible roles and playbooks to deploy a three-tier web application consisting of a frontend (Nginx web server), a backend (Node.js application), and a database (MySQL server). The deployment is automated using Ansible, ensuring that all components are correctly configured and can communicate with each other.
 
-## 1. Git Repository Setup
+## Project Directory Structure
 
-### 1.1 Create a Git Repository
+The directory structure of the project is organized as follows:
 
-1. **Repository Creation**: Create a Git repository to store all project files, including Ansible playbooks, Dockerfiles, and Kubernetes manifests.
 
-2. **Branching Strategy**:
-    - **Development Branch**: For ongoing development work.
-    - **Testing Branch**: For integration testing and staging.
-    - **Production Branch**: For stable and production-ready code.
+## Role Definitions and Dependencies
 
-3. **Merging Strategy**:
-    - Merge changes from development to testing after successful unit testing.
-    - Merge changes from testing to production following successful integration testing and code reviews.
+### Frontend Role
 
-## 2. Dockerize Microservices
+- **Tasks**: Install and configure Nginx.
+- **Templates**: `nginx.conf.j2`
+- **Dependencies**: None
 
-### 2.1 Create Dockerfiles
+**[See `frontend/meta/main.yml` in the repository for role dependencies.]**
 
-1. **Front-End Service**:
-    - Create a Dockerfile for the front-end service that builds and packages your front-end application.
+### Backend Role
 
-2. **Product Catalog Service**:
-    - Create a Dockerfile for the product catalog service that builds and packages your product catalog application.
+- **Tasks**: Install Node.js, configure the application, and start the service.
+- **Templates**: `app.js.j2`, `package.json.j2`
+- **Dependencies**: None
 
-3. **Order Processing Service**:
-    - Create a Dockerfile for the order processing service that builds and packages your order processing application.
+**[See `backend/meta/main.yml` in the repository for role dependencies.]**
 
-### 2.2 Build and Push Docker Images
+### Database Role
 
-1. **Build Docker Images**:
+- **Tasks**: Install MySQL server and configure the database.
+- **Dependencies**: None
+
+**[See `database/meta/main.yml` in the repository for role dependencies.]**
+
+## Inventory File
+
+The inventory file is used to define groups and hosts for frontend, backend, and database tiers.
+
+- **Static Inventory**: `inventory/hosts.ini`
+- **Dynamic Inventory**: `inventory/ec2_inventory.py`
+
+**[Update the dynamic inventory script (`ec2_inventory.py`) with appropriate AWS region and settings.]**
+
+## Playbooks
+
+### Deploy Playbook
+
+**File**: `playbooks/deploy.yml`
+
+This playbook orchestrates the deployment of the three-tier application by calling the roles for frontend, backend, and database.
+
+**[See `deploy.yml` in the repository for detailed playbook configuration.]**
+
+### Test Playbook
+
+**File**: `playbooks/test.yml`
+
+This playbook verifies the deployment and functionality of each tier.
+
+**[See `test.yml` in the repository for detailed playbook configuration.]**
+
+## Instructions for Use
+
+1. **Clone the Repository**:
     ```bash
-    docker build -t your-dockerhub-username/front-end:latest ./path/to/front-end
-    docker build -t your-dockerhub-username/product-catalog:latest ./path/to/product-catalog
-    docker build -t your-dockerhub-username/order-processing:latest ./path/to/order-processing
+    git clone <repository-url>
+    cd <repository-directory>
     ```
 
-2. **Push Docker Images**:
+2. **Update Dynamic Inventory**:
+    - Configure `inventory/ec2_inventory.py` with your AWS settings and region.
+
+3. **Configure `ansible.cfg`**:
+    - Ensure the inventory path is set to use the dynamic inventory script:
+      ```ini
+      [defaults]
+      inventory = inventory/ec2_inventory.py
+      roles_path = ./roles
+      ```
+
+4. **Run Deployment**:
     ```bash
-    docker push your-dockerhub-username/front-end:latest
-    docker push your-dockerhub-username/product-catalog:latest
-    docker push your-dockerhub-username/order-processing:latest
+    ansible-playbook -i inventory/hosts.ini playbooks/deploy.yml
     ```
 
-### 2.3 Deliverables
-
-- **Dockerfiles**: Ensure each microservice has a Dockerfile.
-- **Docker Images**: Confirm images are built and pushed to the container registry.
-
-## 3. Kubernetes Deployment
-
-### 3.1 Create Kubernetes Manifests
-
-1. **Front-End Service**:
-    - Create Deployment, Service, and ConfigMap manifests for the front-end service.
-
-2. **Product Catalog Service**:
-    - Create Deployment, Service, and ConfigMap manifests for the product catalog service.
-
-3. **Order Processing Service**:
-    - Create Deployment, Service, and ConfigMap manifests for the order processing service.
-
-4. **Secrets Management**:
-    - Define Kubernetes Secrets for sensitive configuration data.
-
-### 3.2 Deploy to Kubernetes Cluster
-
-1. **Apply Manifests**:
+5. **Run Testing**:
     ```bash
-    kubectl apply -f ./path/to/front-end/configmap.yml
-    kubectl apply -f ./path/to/front-end/secrets.yml
-    kubectl apply -f ./path/to/front-end/mysql-deployment.yml
-    kubectl apply -f ./path/to/front-end/deployment.frontend.yml
-    kubectl apply -f ./path/to/front-end/deployment.catalog.yml
-    kubectl apply -f ./path/to/front-end/deployment.order.yml
+    ansible-playbook -i inventory/hosts.ini playbooks/test.yml
     ```
 
-### 3.3 Deliverables
+## License
 
-- **Kubernetes Manifests**: Ensure all required YAML files are created.
-- **Successful Deployment**: Verify that all microservices are successfully deployed and accessible in the Kubernetes cluster.
-  
-## Output:
-- ![image](https://github.com/user-attachments/assets/a2b61197-de21-4a51-aa62-32ed6f509c89)
-- ![image](https://github.com/user-attachments/assets/e5002e40-8755-43c0-87e0-59998f14766a)
-- ![image](https://github.com/user-attachments/assets/3e198ef4-916a-44c6-af0f-c1832a43a1fa)
-- ![image](https://github.com/user-attachments/assets/9a1b4c96-d972-4254-ab90-a59931259752)
-- ![Uploading image.png…]()
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
